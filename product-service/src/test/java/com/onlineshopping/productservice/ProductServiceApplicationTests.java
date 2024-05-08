@@ -15,12 +15,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.math.BigDecimal;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
+@Testcontainers
 @AutoConfigureMockMvc
 class ProductServiceApplicationTests {
 
@@ -32,10 +34,6 @@ class ProductServiceApplicationTests {
 	private ObjectMapper objectMapper;
 	@Autowired
 	private ProductRepository productRepository;
-
-	static {
-		mongoDBContainer.start();
-	}
 
 	@DynamicPropertySource
 	static void setProperties(DynamicPropertyRegistry dymDynamicPropertyRegistry) {
@@ -55,9 +53,9 @@ class ProductServiceApplicationTests {
 
 	private ProductRequest getProductRequest() {
 		return ProductRequest.builder()
-				.name("iPhone 15")
-				.description("iPhone 15")
-				.price(BigDecimal.valueOf(60000))
+				.name("iPhone 13")
+				.description("iPhone 13")
+				.price(BigDecimal.valueOf(1200))
 				.build();
 	}
 
